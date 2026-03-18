@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            background-color: rgb(103, 101, 101);
+            text-align: center;
+            padding: 10px;
+        }
+        nav ul{
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li{
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a{
+            color: aliceblue;
+            text-decoration: none;
+        }
+        main{
+            display: flex;
+            padding: 20px;
+        }
+        section{
+            flex: 1;
+        }
+        div{
+            height: 800px;
+            width: 1300px;
+            margin: 0 auto;
+        }
+        img{
+            height: 800px;
+            width: 1300px;
+        }
+
+        /* 新增：联系我们板块样式 */
+        .contact-section {
+            width: 1300px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        footer{
+            position: fixed;
+            bottom: 0;
+            background-color: rgb(78, 79, 80);
+            color: aliceblue;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">首页</a></li>
+                <li><a href="{% url 'register' %}">注册</a></li>
+                <li><a href="{% url 'login' %}">登录</a></li>
+                <!-- 改动点1：点击跳转到联系我们 -->
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>智能先锋</h1>
+            <p>大电器城</p>
+        </section>
+        
+        <section id="news">
+            <h2>居家优品</h2>
+            <p>品质生活</p>
+        </section>
+
+        <section>
+            <h2>超市百货</h2>
+            <p>百货生鲜</p>
+        </section>
+
+        <section>
+            <h2>时尚达人</h2>
+            <p>美妆穿搭</p>
+        </section>
+
+        <section>
+            <h2>进口好物</h2>
+            <p>国际大牌</p>
+        </section>
+    </main>
+
+    <div><img src="{% static 'image/1.webp' %}" id="carousel-img" alt=""></div>
+
+    <!-- ====================== 改动点2：新增联系我们板块 ====================== -->
+    <section class="contact-section" id="contact">
+        <h2>联系我们</h2>
+        <p><strong>客服电话：</strong>400-123-4567</p>
+        <p><strong>工作时间：</strong>周一至周日 9:00 - 22:00</p>
+        <p><strong>电子邮箱：</strong>service@dianqi.com</p>
+        <p><strong>店铺地址：</strong>北京市朝阳区电器城大厦8层</p>
+    </section>
+
+    <footer>
+        <p>版权所有&copy;2023</p>
+    </footer>
+
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}" ></script>
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+    <script>
+        let images = ['{% static 'image/1.webp' %}','{% static 'image/2.webp' %}','{% static 'image/3.webp' %}'];
+        let index = 0 ;
+        let imgele = document.getElementById('carousel-img')
+
+        setInterval(() => {
+            imgele.src = images[index]
+            index ++;
+            if(index>=images.length){
+                index = 0;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
